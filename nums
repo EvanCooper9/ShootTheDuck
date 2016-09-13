@@ -1,0 +1,34 @@
+if self.state != Game.MAINMENU :
+			score = self.score
+			score1 = [int(i) for i in str(score)]
+			
+			score_file = open('HighScore.txt', 'r')
+			high_score = int(score_file.read())
+			high_score1 = [int(i) for i in str(high_score)]
+			if self.state == Game.GAMEOVER and high_score >= self.score :
+				scores = [score1, high_score1]
+			else : 
+				scores = [score1]
+			self.b = 1
+			for d in scores : 
+				if self.b == 1 :
+					# When blitting the current score the at top of the screen
+					pos_y = 20
+					pos_x = self.width//2
+				if self.b == 2 :
+					# When blitting the high score in the game over screen
+					pos_y = (self.height//16)*7
+					pos_x = (self.width//8)*7
+				
+				self.x_pos = 30*(len(d) - 1)
+				for i in d :
+					a = self.nums[i]
+					
+					rect_score = a.get_rect()
+					rect_score = rect_score.move(pos_x - self.x_pos, pos_y)
+					self.screen.blit(a, rect_score)
+					self.x_pos -= 30
+					if self.x_pos < 0 :
+						self.x_pos = 30*(len(d) - 1)
+
+				self.b = 2
