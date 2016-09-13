@@ -1,5 +1,5 @@
 # Shoot The Duck.
-v1.0
+A duck hunt inspired python/pygame game
 
 ## How to play :
 The game opens to the main menu. To start playing, the user must click the mouse.
